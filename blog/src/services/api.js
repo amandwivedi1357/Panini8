@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/api'
+const API_URL = 'https://panini8-backend.onrender.com/api'
 
 
 export const getPosts = async (page = 1, limit = 10, tag = null) => {

@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token'))
   const [loading, setLoading] = useState(true)
 
-  axios.defaults.baseURL = 'http://localhost:5000/api'
+  axios.defaults.baseURL = 'https://panini8-backend.onrender.com/api'
   
   axios.interceptors.request.use(
     config => {
