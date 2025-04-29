@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { getCommentsByPost, createComment, likeComment, unlikeComment, deleteComment } from '../services/api'
 import { format } from 'date-fns'
 import Loader from './Loader'
+import { Link } from 'react-router-dom'
 
 function CommentSection({ postId }) {
   const { currentUser, isAuthenticated } = useAuth()
@@ -103,7 +104,7 @@ function CommentSection({ postId }) {
       ) : (
         <div className="p-4 mb-6 bg-neutral-100 dark:bg-neutral-800 rounded-lg">
           <p className="text-center">
-            Please <a href="/login" className="text-primary-600 dark:text-primary-400 hover:underline">log in</a> to add a comment.
+            Please <Link to="/login" className="text-primary-600 dark:text-primary-400 hover:underline">log in</Link> to add a comment.
           </p>
         </div>
       )}
