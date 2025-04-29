@@ -33,18 +33,15 @@ const commentSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Update likes count
 commentSchema.methods.updateLikesCount = function() {
   this.likesCount = this.likes.length;
   return this.save();
 };
 
-// Check if comment is liked by user
 commentSchema.methods.isLikedBy = function(userId) {
   return this.likes.some(id => id.toString() === userId.toString());
 };
 
-// Add like
 commentSchema.methods.like = function(userId) {
   if (!this.isLikedBy(userId)) {
     this.likes.push(userId);
@@ -53,7 +50,6 @@ commentSchema.methods.like = function(userId) {
   return this;
 };
 
-// Remove like
 commentSchema.methods.unlike = function(userId) {
   if (this.isLikedBy(userId)) {
     this.likes = this.likes.filter(id => id.toString() !== userId.toString());
@@ -62,7 +58,6 @@ commentSchema.methods.unlike = function(userId) {
   return this;
 };
 
-// Update post's comment count when comment is added/removed
 commentSchema.post('save', async function() {
   const Post = mongoose.model('Post');
   await Post.findByIdAndUpdate(this.post, {
@@ -75,6 +70,20 @@ commentSchema.post('remove', async function() {
   await Post.findByIdAndUpdate(this.post, {
     $inc: { commentsCount: -1 }
   });
+});
+
+commentSchema.virtual('replies', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'parent'
+});
+
+commentSchema.set('toJSON', {
+  virtuals: true
+});
+
+commentSchema.set('toObject', {
+  virtuals: true
 });
 
 const Comment = mongoose.model('Comment', commentSchema);
