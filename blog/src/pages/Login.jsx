@@ -89,7 +89,7 @@ function Login() {
         </form>
         
         <div className="mt-6 text-center">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-black ">
             Don't have an account?{' '}
             <Link 
               to="/register" 

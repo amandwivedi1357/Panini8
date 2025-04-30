@@ -94,13 +94,13 @@ function PostForm({ onSubmit, buttonText = 'Submit', initialData = {} }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {errors.form && (
-        <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 text-sm">
+        <div className="p-4 rounded-xl bg-rose-50 text-rose-600 text-sm">
           {errors.form}
         </div>
       )}
       
       <div className="space-y-2">
-        <label htmlFor="title" className="block text-sm font-medium text-neutral-700 dark:text-neutral-200">
+        <label htmlFor="title" className="block text-sm font-medium text-neutral-700">
           Title <span className="text-rose-500">*</span>
         </label>
         <input
@@ -112,17 +112,17 @@ function PostForm({ onSubmit, buttonText = 'Submit', initialData = {} }) {
           placeholder="Enter a catchy title..."
           className={`w-full px-4 py-3 rounded-xl border ${
             errors.title 
-              ? 'border-rose-500 dark:border-rose-500' 
-              : 'border-neutral-200 dark:border-neutral-700'
-          } bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 dark:focus:ring-purple-400/50 transition-all duration-200`}
+              ? 'border-rose-500' 
+              : 'border-neutral-200'
+          } bg-white text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200`}
         />
         {errors.title && (
-          <p className="mt-1 text-sm text-rose-600 dark:text-rose-400">{errors.title}</p>
+          <p className="mt-1 text-sm text-rose-600">{errors.title}</p>
         )}
       </div>
       
       <div className="space-y-2">
-        <label htmlFor="coverImage" className="block text-sm font-medium text-neutral-700 dark:text-neutral-200">
+        <label htmlFor="coverImage" className="block text-sm font-medium text-neutral-700">
           Cover Image URL
         </label>
         <input
@@ -132,13 +132,13 @@ function PostForm({ onSubmit, buttonText = 'Submit', initialData = {} }) {
           value={formData.coverImage}
           onChange={handleImageChange}
           placeholder="https://example.com/image.jpg"
-          className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 dark:focus:ring-purple-400/50 transition-all duration-200"
+          className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200"
         />
         
         {previewImage && (
           <div className="mt-3">
-            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">Preview:</p>
-            <div className="relative h-48 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+            <p className="text-sm text-neutral-500 mb-2">Preview:</p>
+            <div className="relative h-48 overflow-hidden rounded-xl border border-neutral-200">
               <img 
                 src={previewImage || "/placeholder.svg"} 
                 alt="Cover preview" 
@@ -151,7 +151,7 @@ function PostForm({ onSubmit, buttonText = 'Submit', initialData = {} }) {
       </div>
       
       <div className="space-y-2">
-        <label htmlFor="content" className="block text-sm font-medium text-neutral-700 dark:text-neutral-200">
+        <label htmlFor="content" className="block text-sm font-medium text-neutral-700">
           Content <span className="text-rose-500">*</span>
         </label>
         <textarea
@@ -163,17 +163,17 @@ function PostForm({ onSubmit, buttonText = 'Submit', initialData = {} }) {
           rows="8"
           className={`w-full px-4 py-3 rounded-xl border ${
             errors.content 
-              ? 'border-rose-500 dark:border-rose-500' 
-              : 'border-neutral-200 dark:border-neutral-700'
-          } bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 dark:focus:ring-purple-400/50 transition-all duration-200 resize-y`}
+              ? 'border-rose-500' 
+              : 'border-neutral-200'
+          } bg-white text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200 resize-y`}
         />
         {errors.content && (
-          <p className="mt-1 text-sm text-rose-600 dark:text-rose-400">{errors.content}</p>
+          <p className="mt-1 text-sm text-rose-600">{errors.content}</p>
         )}
       </div>
       
       <div className="space-y-2">
-        <label htmlFor="tags" className="block text-sm font-medium text-neutral-700 dark:text-neutral-200">
+        <label htmlFor="tags" className="block text-sm font-medium text-neutral-700">
           Tags (comma separated)
         </label>
         <input
@@ -185,45 +185,37 @@ function PostForm({ onSubmit, buttonText = 'Submit', initialData = {} }) {
           placeholder="technology, programming, web development"
           className={`w-full px-4 py-3 rounded-xl border ${
             errors.tags 
-              ? 'border-rose-500 dark:border-rose-500' 
-              : 'border-neutral-200 dark:border-neutral-700'
-          } bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 dark:focus:ring-purple-400/50 transition-all duration-200`}
+              ? 'border-rose-500' 
+              : 'border-neutral-200'
+          } bg-white text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200`}
         />
         {errors.tags && (
-          <p className="mt-1 text-sm text-rose-600 dark:text-rose-400">{errors.tags}</p>
+          <p className="mt-1 text-sm text-rose-600">{errors.tags}</p>
         )}
         
         {formData.tags && (
-          <div className="flex flex-wrap gap-2 mt-3">
-            {formData.tags.split(',').map((tag, index) => (
+          <div className="flex flex-wrap gap-2 mt-2">
+            {formData.tags.split(',').map((tag, index) => 
               tag.trim() && (
                 <div 
                   key={index}
-                  className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200"
+                  className="inline-block px-2 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-700"
                 >
-                  #{tag.trim()}
+                  {tag.trim()}
                 </div>
               )
-            ))}
+            )}
           </div>
         )}
       </div>
       
-      <div className="flex justify-end pt-4">
+      <div className="mt-6">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-3 rounded-xl text-base font-medium bg-gradient-to-r from-rose-500 to-purple-600 text-white hover:shadow-lg hover:shadow-rose-500/20 dark:hover:shadow-purple-600/20 transition-all duration-300 hover:translate-y-[-1px] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
+          className="w-full px-6 py-3 rounded-xl bg-black text-white hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200 disabled:opacity-50"
         >
-          {isSubmitting ? (
-            <div className="flex items-center">
-              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Processing...
-            </div>
-          ) : buttonText}
+          {buttonText}
         </button>
       </div>
     </form>
