@@ -87,7 +87,7 @@ Visit the live demo: [BlogCraft](https://blogcraft-panini8.vercel.app/)
 ## 🗄️ Project Structure
 
 ```
-blogcraft/
+panini8/
 ├── src/                    # Frontend source files
 │   ├── components/         # Reusable React components
 │   ├── contexts/          # React context providers
